@@ -14,7 +14,6 @@ environment:
   AWS_DEFAULT_REGION: eu-west-1
   PULUMI_ACCESS_TOKEN:
     secure: 1M5f43O86+9tzzRZM5/0lqD/quSqLs1+5JRRwLHkV7GAXUHYmiURrDTzf7Pa/xwq
-  PATH: ${PATH}:$HOME/.pulumi/bin
 
 skip_branch_with_pr: true
 
@@ -32,7 +31,7 @@ init:
     curl -fsSL https://get.pulumi.com | sh
 
 before_build:
-- sh: pulumi up --cwd .pulumi
+- sh: $HOME/.pulumi/bin/pulumi up --cwd .pulumi
 
 build_script:
 - sh: |
