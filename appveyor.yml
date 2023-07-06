@@ -29,6 +29,7 @@ nuget:
 init:
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
+    nuget source add -Name NuGet -Source https://api.nuget.org/v3/index.json
     nuget source
 
 before_build:
