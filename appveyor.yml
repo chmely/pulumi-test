@@ -39,13 +39,13 @@ before_build:
 - cmd: |
     SET "PATH=%PATH%;%USERPROFILE%\.pulumi\bin"
     pulumi stack ls --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi
-    pulumi preview --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi --stack devqa
+#    pulumi preview --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi --stack devqa
 
 - sh: |
     export PATH=$PATH:$HOME/.pulumi/bin
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
     pulumi stack --cwd .pulumi
-    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
+#    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
 
 build_script:
 - sh: |
