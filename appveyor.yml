@@ -52,7 +52,7 @@ before_build:
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
     pulumi stack select devqa
     pulumi stack
-    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
+    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa --nuget-source https://api.nuget.org/v3/index.json
 
 build_script:
 - |
