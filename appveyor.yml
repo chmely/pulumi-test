@@ -39,7 +39,7 @@ before_build:
 - cmd: |
     SET "PATH=%PATH%;%USERPROFILE%\.pulumi\bin"
     cd .pulumi
-    nuget source add -Name NuGet -Source https://api.nuget.org/v3/index.json
+#    nuget source add -Name NuGet -Source https://api.nuget.org/v3/index.json
     nuget source
     pulumi stack ls --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi
 #    pulumi preview --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi --stack devqa
