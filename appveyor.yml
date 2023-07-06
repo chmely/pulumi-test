@@ -47,7 +47,8 @@ before_build:
     cd .pulumi
     nuget source
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
-    pulumi stack --cwd .
+    pulumi stack select devqa
+    pulumi stack
 #    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
 
 build_script:
