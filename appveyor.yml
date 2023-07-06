@@ -35,8 +35,8 @@ init:
     curl -fsSL https://get.pulumi.com | sh
     nuget sources add -Name "nuget.org" -Source "https://api.nuget.org/v3/index.json"
     nuget source
-    ls -la ~/.nuget/NuGet/NuGet.Config
-    
+    cat ~/.nuget/NuGet/NuGet.Config
+
 
 before_build:
 - cmd: |
