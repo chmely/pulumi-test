@@ -29,6 +29,7 @@ nuget:
 init:
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
+    nuget source
 
 before_build:
 - sh: |
