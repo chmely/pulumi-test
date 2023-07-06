@@ -48,5 +48,5 @@ before_build:
 #    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
 
 build_script:
-- sh: |
+- |
     dotnet build -c Release
