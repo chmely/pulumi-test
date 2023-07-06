@@ -53,4 +53,5 @@ before_build:
 
 build_script:
 - |
+    cd ..
     dotnet build pulumi-test.csproj -c Release
