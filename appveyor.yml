@@ -31,7 +31,7 @@ init:
     curl -fsSL https://get.pulumi.com | sh
 
 before_build:
-- sh: $HOME/.pulumi/bin/pulumi up --cwd .pulumi
+- sh: $HOME/.pulumi/bin/pulumi preview --cwd .pulumi
 
 build_script:
 - sh: |
