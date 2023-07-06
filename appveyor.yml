@@ -3,8 +3,8 @@ version: 1.19.{build}
 pull_requests:
   do_not_increment_build_number: true
 
-image: Ubuntu2004
-#image: Visual Studio 2022
+#image: Ubuntu2004
+image: Visual Studio 2022
 
 configuration: Release
 
@@ -28,12 +28,20 @@ nuget:
   project_feed: true
 
 init:
+- ps: |
+    @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://get.pulumi.com/install.ps1'))"
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
     nuget source add -Name NuGet -Source https://api.nuget.org/v3/index.json
     nuget source
 
 before_build:
+- cmd: |
+    SET "PATH=%PATH%;%USERPROFILE%\.pulumi\bin"
+    pulumi stack ls --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi
+    pulumi stack --cwd .pulumi
+    pulumi preview --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi --stack devqa
+
 - sh: |
     export PATH=$PATH:$HOME/.pulumi/bin
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
