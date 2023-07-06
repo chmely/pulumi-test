@@ -29,34 +29,22 @@ nuget:
   project_feed: true
 
 init:
-- cmd: |
-    pwsh -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://get.pulumi.com/install.ps1'))"
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
-    nuget sources add -Name "nuget.org" -Source "https://api.nuget.org/v3/index.json"
-    nuget source
     rm -f ~/.nuget/NuGet/NuGet.Config
 
 
 before_build:
-- cmd: |
-    SET "PATH=%PATH%;%USERPROFILE%\.pulumi\bin"
-    cd .pulumi
-    nuget source
-    pulumi stack ls --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi
-#    pulumi preview --cwd %APPVEYOR_BUILD_FOLDER%/.pulumi --stack devqa
-
 - sh: |
     export PATH=$PATH:$HOME/.pulumi/bin
     cd .pulumi
     nuget source
-    dotnet restore
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
     pulumi stack select devqa
     pulumi stack
     pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
 
 build_script:
-- |
+- sh: |
     cd ..
     dotnet build pulumi-test.csproj -c Release
