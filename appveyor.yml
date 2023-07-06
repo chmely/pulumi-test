@@ -1,0 +1,38 @@
+version: 1.19.{build}
+
+pull_requests:
+  do_not_increment_build_number: true
+
+image: Ubuntu-20.04
+
+configuration: Release
+
+clone_depth: 1
+
+environment:
+  LGC_ENV: DEVELOPMENT
+  AWS_DEFAULT_REGION: eu-west-1
+  PULUMI_ACCESS_TOKEN:
+    secure: 1M5f43O86+9tzzRZM5/0lqD/quSqLs1+5JRRwLHkV7GAXUHYmiURrDTzf7Pa/xwq
+
+skip_branch_with_pr: true
+
+cache:
+  - packages -> paket.lock
+  - paket-files/paket.restore.cached -> paket.lock
+
+nuget:
+  disable_publish_on_pr: true
+  account_feed: true
+  project_feed: true
+
+init:
+- sh: |
+    curl -fsSL https://get.pulumi.com | sh
+
+before_build:
+- sh: pulumi up --cwd .pulumi
+
+build_script:
+- sh: |
+    dotnet build -c Release
