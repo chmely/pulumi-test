@@ -33,7 +33,6 @@ init:
     pwsh -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://get.pulumi.com/install.ps1'))"
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
-    nuget sources add -Name "nuget.org" -Source "https://api.nuget.org/v3/index.json"
     nuget source
 
 before_build:
@@ -52,7 +51,7 @@ before_build:
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
     pulumi stack select devqa
     pulumi stack
-    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa --nuget-source https://api.nuget.org/v3/index.json
+    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
 
 build_script:
 - |
