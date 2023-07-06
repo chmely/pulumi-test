@@ -15,7 +15,7 @@ environment:
   AWS_DEFAULT_REGION: eu-west-1
   PULUMI_ACCESS_TOKEN:
     secure: 1M5f43O86+9tzzRZM5/0lqD/quSqLs1+5JRRwLHkV7GAXUHYmiURrDTzf7Pa/xwq
-  PULUMI_DEBUG=true
+  PULUMI_DEBUG: true
 
 skip_branch_with_pr: true
 
