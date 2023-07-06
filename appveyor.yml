@@ -32,6 +32,7 @@ init:
 
 before_build:
 - sh: |
+    ls .pulumi
     export PATH=$PATH:$HOME/.pulumi/bin
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
     pulumi stack --cwd .pulumi
