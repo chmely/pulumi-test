@@ -3,8 +3,8 @@ version: 1.19.{build}
 pull_requests:
   do_not_increment_build_number: true
 
-#image: Ubuntu2004
-image: Visual Studio 2022
+image: Ubuntu2004
+#image: Visual Studio 2022
 
 configuration: Release
 
@@ -44,6 +44,8 @@ before_build:
 
 - sh: |
     export PATH=$PATH:$HOME/.pulumi/bin
+    cd .pulumi
+    nuget source
     pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
     pulumi stack --cwd .pulumi
 #    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
