@@ -31,7 +31,11 @@ init:
     curl -fsSL https://get.pulumi.com | sh
 
 before_build:
-- sh: $HOME/.pulumi/bin/pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack dev
+- sh: |
+    export PATH=$PATH:$HOME/.pulumi/bin
+    pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
+    pulumi stack --cwd .pulumi
+    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack dev
 
 build_script:
 - sh: |
