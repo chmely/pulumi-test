@@ -19,7 +19,6 @@ environment:
     secure: 87d9QqqeBj+B/oMZcBeFmY0sW4B0lzwBRUuC9fb27r8=
   AWS_SECRET_ACCESS_KEY:
     secure: vsV+r8mOVSG4LC4+3RM7DO8C/5UbrSl9HY2tvCsPrg+ThO/NBrFqoyWGIIY+V1hR
-  AWS_DEFAULT_REGION: eu-west-1
   PULUMI_DEBUG: true
 
 skip_branch_with_pr: true
