@@ -49,7 +49,8 @@ return await Deployment.RunAsync(() =>
         var lambda = new Pulumi.Aws.Lambda.Function("myLambdaFunction", new Pulumi.Aws.Lambda.FunctionArgs
         {
             Runtime = "dotnet6",
-            Code = new FileArchive("/publish/lambda.zip"),
+            S3Bucket = "dev-appveyor",
+            S3Key = "TestLambda/Version123.zip",
             Handler = "LetsGetChecked.TreatmentPlans.KafkaExporter.Lambda::LetsGetChecked.TreatmentPlans.KafkaExporter.Lambda.Function::Handler",
             Role = lambdaRole.Arn
         });
