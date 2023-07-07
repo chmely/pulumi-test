@@ -35,7 +35,7 @@ nuget:
 init:
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
-    mkdir /publish
+    sudo mkdir /publish && sudo chmod 777 /publish
     touch /publish/lambda.zip
 
 
