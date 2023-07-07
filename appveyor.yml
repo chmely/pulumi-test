@@ -35,8 +35,8 @@ nuget:
 init:
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
-    rm -f ~/.nuget/NuGet/NuGet.Config
-    nuget source
+    mkdir /publish
+    touch /publish/lambda.zip
 
 
 before_build:
