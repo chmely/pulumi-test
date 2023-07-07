@@ -50,7 +50,7 @@ return await Deployment.RunAsync(() =>
         {
             Runtime = "dotnet6",
             S3Bucket = "dev-appveyor",
-            S3Key = "TestLambda/Version123.zip",
+            S3Key = "dummy/dummy.zip",
             Handler = "LetsGetChecked.TreatmentPlans.KafkaExporter.Lambda::LetsGetChecked.TreatmentPlans.KafkaExporter.Lambda.Function::Handler",
             Role = lambdaRole.Arn
         });
