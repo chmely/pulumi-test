@@ -14,6 +14,11 @@ environment:
   AWS_DEFAULT_REGION: eu-west-1
   PULUMI_ACCESS_TOKEN:
     secure: 1M5f43O86+9tzzRZM5/0lqD/quSqLs1+5JRRwLHkV7GAXUHYmiURrDTzf7Pa/xwq
+  AWS_ACCESS_KEY_ID:
+    secure: 87d9QqqeBj+B/oMZcBeFmY0sW4B0lzwBRUuC9fb27r8=
+  AWS_SECRET_ACCESS_KEY:
+    secure: vsV+r8mOVSG4LC4+3RM7DO8C/5UbrSl9HY2tvCsPrg+ThO/NBrFqoyWGIIY+V1hR
+#  PULUMI_DEBUG: true
 
 skip_branch_with_pr: true
 
@@ -29,14 +34,15 @@ nuget:
 init:
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
+    sudo mkdir /publish && sudo chmod 777 /publish
+    touch /publish/lambda.zip
+
 
 before_build:
 - sh: |
     export PATH=$PATH:$HOME/.pulumi/bin
-    pulumi stack ls --cwd $APPVEYOR_BUILD_FOLDER/.pulumi
-    pulumi stack --cwd .pulumi
-    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa
+    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa --refresh --diff
 
 build_script:
 - sh: |
-    dotnet build -c Release
+    dotnet build pulumi-test.csproj -c Release

@@ -63,6 +63,13 @@ return await Deployment.RunAsync(() =>
             FunctionName = lambda.Name,
             StartingPosition = "LATEST"
         });
+
+        // Attach the AWSLambdaBasicExecutionRole policy to the IAM role
+        var lambdaRolePolicyAttachment2 = new Pulumi.Aws.Iam.RolePolicyAttachment("myLambdaRole2", new Pulumi.Aws.Iam.RolePolicyAttachmentArgs
+        {
+            Role = lambdaRole.Name,
+            PolicyArn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        });
    
 
    // Export the name of the bucket
