@@ -32,6 +32,7 @@ init:
 - sh: |
     curl -fsSL https://get.pulumi.com | sh
     rm -f ~/.nuget/NuGet/NuGet.Config
+    nuget source
 
 
 before_build:
