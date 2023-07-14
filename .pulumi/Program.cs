@@ -3,7 +3,7 @@ using Pulumi.Aws;
 using Amazon.DynamoDBv2;
 using Amazon.Lambda;
 
-
+/*
 await
     Infrastructure
         .Builder
@@ -31,3 +31,4 @@ await
                 .Sqs("us-notifications")
                 .KafkaTopic("internal-messaging")
             .Create();
+*/
