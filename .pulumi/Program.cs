@@ -33,5 +33,5 @@ await
                 .WithDynamoDbTrigger("newTable", EventSourcePosition.LATEST)
                 .EndLambda()
             .Sqs("notifications")
-            .KafkaTopic("internal-messaging")
+//            .KafkaTopic("internal-messaging")
             .Create();
