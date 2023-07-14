@@ -31,6 +31,7 @@ namespace LetsGetChecked.Infrastructure.Builders
                 _topicName,
                 new Pulumi.Kafka.TopicArgs
                 {
+                    Name = _topicName,
                     ReplicationFactor = 1,
                     Partitions = 3
                 });

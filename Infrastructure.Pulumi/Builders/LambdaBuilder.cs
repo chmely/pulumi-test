@@ -30,12 +30,13 @@ namespace LetsGetChecked.Infrastructure.Builders
             return this;
         }
 
-        private static Pulumi.Aws.Iam.Role CreateRole()
+        private static Pulumi.Aws.Iam.Role CreateRole(string roleName)
         {
             return new Pulumi.Aws.Iam.Role(
-                "myLambdaRole",
+                roleName,
                 new Pulumi.Aws.Iam.RoleArgs
                 {
+                    Name = roleName,
                     AssumeRolePolicy = @"{
                         ""Version"": ""2012-10-17"",
                         ""Statement"": [{
@@ -50,10 +51,10 @@ namespace LetsGetChecked.Infrastructure.Builders
                 });
         }
 
-        private static Pulumi.Aws.Iam.RolePolicyAttachment CreateRolePolicyAttachment(Pulumi.Aws.Iam.Role lambdaRole)
+        private static Pulumi.Aws.Iam.RolePolicyAttachment CreateRolePolicyAttachment(string name, Pulumi.Aws.Iam.Role lambdaRole)
         {
             return new Pulumi.Aws.Iam.RolePolicyAttachment(
-                "myLambdaRolePolicyAttachment",
+                name,
                 new Pulumi.Aws.Iam.RolePolicyAttachmentArgs
                 {
                     Role = lambdaRole.Name,
@@ -66,15 +67,15 @@ namespace LetsGetChecked.Infrastructure.Builders
 
         protected override Task<List<(string Name, CustomResource Resource)>> CreateResources()
         {
-            var lambdaRole = CreateRole();
-            var rolePolicyAttachment = CreateRolePolicyAttachment(lambdaRole);
+            var lambdaRole = CreateRole($"lambda-{_functionName}-execution-role");
+            _ = CreateRolePolicyAttachment("$\"lambda-{_functionName}-execution-role-policy", lambdaRole);
 
             var bucketName = _region == Region.USEast1 ? "lgc-appveyor-us" : "lgc-appveyor";
 
             if (!string.IsNullOrWhiteSpace(_streamTableName))
             {
                 var table = ResourceLookup.GetResource<Pulumi.Aws.DynamoDB.Table>(_streamTableName);
-                var trigger = new EventSourceMapping(
+                _ = new EventSourceMapping(
                     $"{_streamTableName}_trigger",
                     new EventSourceMappingArgs
                     {
@@ -89,6 +90,7 @@ namespace LetsGetChecked.Infrastructure.Builders
                 _functionName,
                 new FunctionArgs
                 {
+                    Name = _functionName,
                     Runtime = Amazon.Lambda.Runtime.Dotnet6.Value,
                     S3Bucket = bucketName,
                     S3Key = "dummy/dummy.zip",

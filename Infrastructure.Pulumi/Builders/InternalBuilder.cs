@@ -31,7 +31,8 @@ namespace LetsGetChecked.Infrastructure.Builders
 
             _regionProviders[key] = cro;
 
-            return cro;
+            //return cro;
+            return new CustomResourceOptions();
         }
     }
 
