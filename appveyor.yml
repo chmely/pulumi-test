@@ -38,9 +38,9 @@ init:
 
 before_build:
 - sh: |
-    export PATH=$PATH:$HOME/.pulumi/bin
-    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa --refresh --diff
+    dotnet build -c Release    
 
 build_script:
 - sh: |
-    dotnet build -c Release
+    export PATH=$PATH:$HOME/.pulumi/bin
+    pulumi preview --cwd $APPVEYOR_BUILD_FOLDER/.pulumi --stack devqa --refresh --diff
