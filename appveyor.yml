@@ -54,7 +54,7 @@ before_build:
 - sh: |
     dotnet tool restore
     dotnet paket restore
-    dotnet build -c Debug
+    dotnet build -c Release
 
 build_script:
 - sh: |
@@ -66,6 +66,6 @@ deploy:
 - provider: NuGet
   server: https://ci.appveyor.com/nuget/chmely-7fo3yj2gwxt4
   api_key:
-    secure: 7YN+iMGUPwOOcxNgWoPht48L8Hs4WWJrPil6UJQULPA=
+    secure: tIvPr5WnVjUAjUfPUXzHzAwRJ+rXc6IQkxM5OdTLuJk=
   skip_symbols: true
     
