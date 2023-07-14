@@ -3,13 +3,13 @@ using Pulumi.Aws;
 using Amazon.DynamoDBv2;
 using Amazon.Lambda;
 
-/*
+
 await
     Infrastructure
         .Builder
             .Sqs("shop-notifications")
             .Create();
-*/
+/*
 await
     Infrastructure
         .Builder
@@ -35,3 +35,4 @@ await
             .Sqs("notifications")
 //            .KafkaTopic("internal-messaging")
             .Create();
+*/
