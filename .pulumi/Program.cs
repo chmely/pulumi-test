@@ -7,7 +7,7 @@ using Amazon.Lambda;
 await
     Infrastructure
         .Builder
-            .Sqs("notifications")
+            .Sqs("shop-notifications")
             .Create();
 /*
 await
