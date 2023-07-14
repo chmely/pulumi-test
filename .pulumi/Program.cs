@@ -30,9 +30,8 @@ await
                 .EndDynamoDb()
             .Lambda("myLambda")
                 .WithHandler("LetsGetChecked.Prescription.KafkaExporter.Lambda::LetsGetChecked.Prescription.KafkaExporter.Lambda.Function::Handler")
-                .WithDynamoDbTrigger("newTable", EventSourcePosition.LATEST)
                 .EndLambda()
-            .Sqs("us-notifications")
-            .KafkaTopic("internal-messaging")
+            .Sqs("notifications")
+//            .KafkaTopic("internal-messaging")
             .Create();
 */
