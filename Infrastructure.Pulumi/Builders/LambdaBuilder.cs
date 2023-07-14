@@ -70,7 +70,7 @@ namespace LetsGetChecked.Infrastructure.Builders
             var lambdaRole = CreateRole($"lambda-{_functionName}-execution-role");
             _ = CreateRolePolicyAttachment("$\"lambda-{_functionName}-execution-role-policy", lambdaRole);
 
-            var bucketName = _region == Region.USEast1 ? "lgc-appveyor-us" : "lgc-appveyor";
+            var bucketName = _region == Region.USEast1 ? "pch-appveyor-us" : "pch-appveyor";
 
             if (!string.IsNullOrWhiteSpace(_streamTableName))
             {
