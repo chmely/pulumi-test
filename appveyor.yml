@@ -13,7 +13,7 @@ environment:
   LGC_ENV: DEVELOPMENT
   AWS_DEFAULT_REGION: eu-west-1
   PULUMI_ACCESS_TOKEN:
-    secure: qiyholt2kbPh00WxpxkpikM3Aj+XU4okU2+bBBJYt2O0QMRtpmMWj+s+NQee/V77
+    secure: 1M5f43O86+9tzzRZM5/0lqD/quSqLs1+5JRRwLHkV7GAXUHYmiURrDTzf7Pa/xwq
   AWS_ACCESS_KEY_ID:
     secure: 87d9QqqeBj+B/oMZcBeFmY0sW4B0lzwBRUuC9fb27r8=
   AWS_SECRET_ACCESS_KEY:
