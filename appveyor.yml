@@ -38,6 +38,8 @@ init:
 
 before_build:
 - sh: |
+    dotnet tool restore
+    dotnet paket restore
     dotnet build -c Debug
 
 build_script:
