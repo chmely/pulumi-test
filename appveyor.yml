@@ -18,6 +18,7 @@ environment:
     secure: 87d9QqqeBj+B/oMZcBeFmY0sW4B0lzwBRUuC9fb27r8=
   AWS_SECRET_ACCESS_KEY:
     secure: vsV+r8mOVSG4LC4+3RM7DO8C/5UbrSl9HY2tvCsPrg+ThO/NBrFqoyWGIIY+V1hR
+  PULUMI_HOME: $(APPVEYOR_BUILD_FOLDER)/.pulumi-home
 #  PULUMI_DEBUG: true
 
 skip_branch_with_pr: true
@@ -25,7 +26,7 @@ skip_branch_with_pr: true
 cache:
   - packages -> paket.lock
   - paket-files/paket.restore.cached -> paket.lock
-  - ~/.pulumi/plugins
+  - .pulumi-home/plugins
 
 artifacts:
 - path: Infrastructure.Pulumi\bin\Debug\LetsGetChecked.Infrastructure.Pulumi.*.nupkg
@@ -53,7 +54,7 @@ before_build:
 - sh: |
     dotnet tool restore
     dotnet paket restore
-    dotnet build -c Debug
+    dotnet build -c Release
 
 build_script:
 - sh: |
@@ -65,6 +66,6 @@ deploy:
 - provider: NuGet
   server: https://ci.appveyor.com/nuget/chmely-7fo3yj2gwxt4
   api_key:
-    secure: 7YN+iMGUPwOOcxNgWoPht48L8Hs4WWJrPil6UJQULPA=
+    secure: tIvPr5WnVjUAjUfPUXzHzAwRJ+rXc6IQkxM5OdTLuJk=
   skip_symbols: true
     

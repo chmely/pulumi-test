@@ -16,7 +16,7 @@
       <PackageReference Include="Pulumi.Kafka" Version="3.4" />
 
       <Reference Include="LetsGetChecked.Infrastructure.Pulumi">
-          <HintPath>..\Infrastructure.Pulumi\bin\Debug\net6.0\LetsGetChecked.Infrastructure.Pulumi.dll</HintPath>
+          <HintPath>..\Infrastructure.Pulumi\bin\Release\net6.0\LetsGetChecked.Infrastructure.Pulumi.dll</HintPath>
       </Reference>
   </ItemGroup>
 
