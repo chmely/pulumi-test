@@ -42,7 +42,7 @@ dotnet_csproj:
   version: '{version}'
   package_version: '{version}'
   assembly_version: '{version}'
-  file_version: '{version}'
+  file_version: '{version}.0'
   informational_version: '{version}'
 
 init:
