@@ -397,3 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 .paket/
+!Infrastructure.Pulumi\bin\Release\net6.0\LetsGetChecked.Infrastructure.Pulumi.dll

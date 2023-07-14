@@ -30,6 +30,7 @@ namespace LetsGetChecked.Infrastructure.Builders
                 _queueName,
                 new()
                 {
+                    Name = _queueName,
                     MessageRetentionSeconds = (int)TimeSpan.FromDays(7).TotalSeconds
                 });
 
