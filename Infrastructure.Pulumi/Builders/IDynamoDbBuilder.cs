@@ -28,18 +28,13 @@ namespace LetsGetChecked.Infrastructure.Builders
 
     class DynamoDbGlobalIndexBuilder : ResourceArgBuilder<IDynamoDbBuilder, TableGlobalSecondaryIndexArgs>, IDynamoDbGlobalIndexBuilder
     {
-        private readonly DynamoDbBuilder _tableBuilder;
-
         private readonly TableGlobalSecondaryIndexArgs _index = new ()
         {
             ProjectionType = ProjectionType.ALL.Value
         };
 
-        public DynamoDbGlobalIndexBuilder(DynamoDbBuilder parentBuilder, string indexName) : base(parentBuilder)
-        {
-            _index.Name = indexName.NotNullOrWhiteSpace(nameof(indexName));
-            _tableBuilder = parentBuilder;
-        }
+        public DynamoDbGlobalIndexBuilder(IDynamoDbBuilder parentBuilder, string indexName) : base(parentBuilder)
+            => _index.Name = indexName.NotNullOrWhiteSpace(nameof(indexName));
 
         protected override Task<TableGlobalSecondaryIndexArgs> Build()
             => Task.FromResult(_index);

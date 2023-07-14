@@ -40,6 +40,7 @@ namespace LetsGetChecked.Infrastructure.Builders
             var globalIndexes = await Task.WhenAll(_globalIndexBuilders.Select(gib => gib.Create()).ToArray());
 
             _tableArgs.GlobalSecondaryIndexes = globalIndexes.ToList();
+            _tableArgs.Name = _tableName;
 
             return Result((_tableName, new Table(_tableName, _tableArgs, ResourceOptions())));
         }
