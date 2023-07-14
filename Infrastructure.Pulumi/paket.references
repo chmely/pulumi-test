@@ -1,0 +1,5 @@
+Pulumi
+Pulumi.Aws
+AWSSDK.DynamoDBv2
+AWSSDK.Lambda
+Pulumi.Kafka
