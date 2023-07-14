@@ -3,13 +3,13 @@ using Pulumi.Aws;
 using Amazon.DynamoDBv2;
 using Amazon.Lambda;
 
-
+/*
 await
     Infrastructure
         .Builder
             .Sqs("shop-notifications")
             .Create();
-/*
+*/
 await
     Infrastructure
         .Builder
@@ -32,7 +32,6 @@ await
                 .WithHandler("LetsGetChecked.Prescription.KafkaExporter.Lambda::LetsGetChecked.Prescription.KafkaExporter.Lambda.Function::Handler")
                 .WithDynamoDbTrigger("newTable", EventSourcePosition.LATEST)
                 .EndLambda()
-            .Sqs("us-notifications")
+            .Sqs("notifications")
             .KafkaTopic("internal-messaging")
             .Create();
-*/
