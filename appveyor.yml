@@ -38,7 +38,7 @@ init:
 
 before_build:
 - sh: |
-    dotnet build -c Release    
+    dotnet build -c Debug
 
 build_script:
 - sh: |
