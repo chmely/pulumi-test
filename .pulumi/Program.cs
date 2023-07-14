@@ -3,6 +3,7 @@ using Pulumi.Aws;
 using Amazon.DynamoDBv2;
 using Amazon.Lambda;
 
+Console.WriteLine("nothing");
 /*
 await
     Infrastructure
